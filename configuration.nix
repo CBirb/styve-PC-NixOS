@@ -12,7 +12,7 @@
       ./game.nix
       ./audio.nix
       ./mount.nix
-      # ./flake.nix
+      # ./themes.nix
     ];
 
   # Bootloader.
@@ -69,6 +69,7 @@
   services.displayManager.sddm.wayland.enable = true;
   # services.desktopManager.plasma6.enable = true;
 
+  
   # Gnome-Desktop
   # services.displayManager.gdm.enable = true;
   # services.desktopManager.gnome.enable = true;
@@ -122,9 +123,7 @@
         bront_fonts
         ucs-fonts
         nerd-fonts.droid-sans-mono
-        nerd-fonts.fira-code
-   
- 
+        nerd-fonts.fira-code 
     ];
 
   fonts.fontconfig.enable = true;
@@ -237,8 +236,6 @@
     unzip
     unrar
     stable.ventoy-full-qt
-    ptyxis
-    ghostty
     megasync
     mission-center
     bat
@@ -289,8 +286,6 @@
     rocmPackages.clang
 
 
-
-
     ## Nvidia
     nvidia-vaapi-driver
     mesa
@@ -305,14 +300,6 @@
  
 
     ## Desktop Tools  
-    kdePackages.partitionmanager
-    kdePackages.ffmpegthumbs
-    kdePackages.discover
-    kdePackages.dolphin
-    kdePackages.dolphin-plugins
-    kdePackages.konsole
-    kdePackages.yakuake
-    xfce.thunar
     xfce.xfburn
     gnome-software
     nemo-with-extensions
@@ -323,10 +310,12 @@
     nemo-fileroller
     nemo-qml-plugin-dbus
     folder-color-switcher
+    folder-color-switcher
     gnome.gvfs
     gvfs
     gnome-tweaks
-    
+    gnome-terminal
+
     
   
     # Hyprland Tools
@@ -339,6 +328,17 @@
     waybar
     fuzzel
     kitty  
+    hyprsysteminfo
+    hyprland-qt-support
+    hyprland-qtutils
+    hyprcursor
+    hyprutils
+    hyprlang
+    hyprwayland-scanner
+    aquamarine
+    hyprgraphics
+    hyprland-qtutils
+    hyprshot
 
 
     ## Gaming
@@ -374,8 +374,8 @@
 
 
     ## Video
-    stable.blackmagic
-    stable.davinci-resolve
+    blackmagic
+    davinci-resolve
     
     ## Audio-Production
 
@@ -517,15 +517,6 @@
     # haskellPackages.ecta-plugin
     decent-sampler
 
-       
-    ## Net
-    gnunet
-    gnunet-gtk
-    libgnurl
-
-    ## Cr-Stuff
-    monero-gui
-    monero-cli
   ];
 
   
