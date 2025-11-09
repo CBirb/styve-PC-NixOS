@@ -1,1 +1,0 @@
-# styve-PC-NixOS

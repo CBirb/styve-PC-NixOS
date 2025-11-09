@@ -67,7 +67,7 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Gnome-Desktop
   # services.displayManager.gdm.enable = true;
@@ -88,8 +88,45 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   }; 
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ 
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+      kdePackages.xdg-desktop-portal-kde
+      lxqt.xdg-desktop-portal-lxqt
+
+    ];
+  };
   
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  # fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  # fonts.packages = with pkgs; [
+  # ];
+
+
+  fonts.packages = with pkgs;
+    (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
+      # Add any extra fonts here, e.g. dejavu_fonts, noto-fonts, etc.
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        noto-fonts-cjk-serif
+        julia-mono
+        liberation_ttf
+        dejavu_fonts
+        fira-code
+        fira-code-symbols
+        mplus-outline-fonts.githubRelease
+        dina-font
+        proggyfonts
+        bront_fonts
+        ucs-fonts
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.fira-code
+   
+ 
+    ];
+
   fonts.fontconfig.enable = true;
 
 
@@ -273,6 +310,8 @@
     kdePackages.discover
     kdePackages.dolphin
     kdePackages.dolphin-plugins
+    kdePackages.konsole
+    kdePackages.yakuake
     xfce.thunar
     xfce.xfburn
     gnome-software
