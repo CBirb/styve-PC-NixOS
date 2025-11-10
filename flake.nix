@@ -41,10 +41,6 @@
                 inherit system;
                 config = {
                   allowUnfree = true;
-                  permittedInsecurePackages = [ 
-                    "ventoy-qt5-1.1.05"
-                    "qtwebengine-5.15.19"
-                  ];
                 };
               };
 
@@ -52,10 +48,6 @@
                 inherit system;
                 config = {
                   allowUnfree = true;
-                  permittedInsecurePackages = [
-                    "ventoy-qt5-1.1.05"
-                    "qtwebengine-5.15.19" 
-                  ];
                 };
               };
 
@@ -63,10 +55,6 @@
                 inherit system;
                 config = {
                   allowUnfree = true;
-                  permittedInsecurePackages = [
-                    "ventoy-qt5-1.1.05"
-                    "qtwebengine-5.15.19"
-                  ];
                 };
               };
             })

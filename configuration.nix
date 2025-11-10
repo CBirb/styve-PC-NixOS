@@ -192,6 +192,9 @@
     memoryPercent = 30;
   };
 
+  # Udisk
+  services.udisks2.enable = true;
+
   # ClamAv
   services.clamav.daemon.enable = true;
   services.clamav.updater.enable = true;
@@ -235,7 +238,6 @@
     git
     unzip
     unrar
-    stable.ventoy-full-qt
     megasync
     mission-center
     bat
@@ -300,7 +302,20 @@
  
 
     ## Desktop Tools  
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    kdePackages.konsole
+    kdePackages.yakuake
+    kdePackages.qmlkonsole
+    kdePackages.partitionmanager
+    kdePackages.kpmcore
     xfce.xfburn
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-dropbox-plugin
+    xfce.thunar-vcs-plugin
+    xfce.thunar-archive-plugin
+    xfce.thunar-media-tags-plugin
     gnome-software
     nemo-with-extensions
     nemo-python
@@ -313,7 +328,6 @@
     folder-color-switcher
     gnome.gvfs
     gvfs
-    gnome-tweaks
     gnome-terminal
 
     
@@ -339,6 +353,8 @@
     hyprgraphics
     hyprland-qtutils
     hyprshot
+    udisks
+    udiskie
 
 
     ## Gaming
