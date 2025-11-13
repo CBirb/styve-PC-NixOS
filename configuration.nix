@@ -67,68 +67,9 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-
-  
-  # Gnome-Desktop
-  # services.displayManager.gdm.enable = true;
-  # services.desktopManager.gnome.enable = true;
-
-  # Hyprland
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
-
-  programs.hyprland = {
-    enable = true;
-    # set the flake package
-    xwayland.enable = true; 
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # make sure to also set the portal package, so that they are in sync
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  }; 
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ 
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
-      kdePackages.xdg-desktop-portal-kde
-      lxqt.xdg-desktop-portal-lxqt
-
-    ];
-  };
-  
-  # fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
-  # fonts.packages = with pkgs; [
-  # ];
-
-
-  fonts.packages = with pkgs;
-    (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
-      # Add any extra fonts here, e.g. dejavu_fonts, noto-fonts, etc.
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-color-emoji
-        noto-fonts-cjk-serif
-        julia-mono
-        liberation_ttf
-        dejavu_fonts
-        fira-code
-        fira-code-symbols
-        mplus-outline-fonts.githubRelease
-        dina-font
-        proggyfonts
-        bront_fonts
-        ucs-fonts
-        nerd-fonts.droid-sans-mono
-        nerd-fonts.fira-code 
-    ];
-
-  fonts.fontconfig.enable = true;
-
-
+  services.desktopManager.plasma6.enable = true;
+ 
+ 
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -161,9 +102,9 @@
   services.pipewire.extraConfig.pipewire."92-low-latency" = {
     "context.properties" = {
       "default.clock.rate" = 48000;        # Samplerate
-      "default.clock.quantum" = 64;       # Buffersize
+      "default.clock.quantum" = 128;       # Buffersize
       "default.clock.min-quantum" = 64;
-      "default.clock.max-quantum" = 128;
+      "default.clock.max-quantum" = 256;
     };
   };
 
@@ -226,7 +167,7 @@
     parted 
     gparted
     distrobox
-    insync
+    stable.insync
     bash
     ffmpeg-full
     ffmpeg-normalize
@@ -238,10 +179,11 @@
     git
     unzip
     unrar
-    megasync
+    stable.megasync
     mission-center
     bat
     podman-compose
+    ptyxis
     
     # Appimage
     # fetchurl
@@ -272,6 +214,13 @@
     stable.btrfs-list
     stable.btrfs-heatmap
 
+    # Uni-Tools
+    stable.texstudio
+    stable.texliveFull
+    stable.texliveGUST
+    stable.texliveTeTeX
+        
+
     ## Coding
      
     # Coding Tools
@@ -286,6 +235,9 @@
     rustup
     go
     rocmPackages.clang
+
+    # Coding Utils
+    stable.vscodium
 
 
     ## Nvidia
