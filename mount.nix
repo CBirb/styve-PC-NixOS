@@ -5,7 +5,7 @@
 
   # Samsung
   fileSystems."/home/steve/Drives/Samsung" = {
-    device = "/dev/disk/by-uuid/459daf8c-79ee-48ac-8c92-356c9bb02bf1";
+    device = "/dev/disk/by-uuid/eb7e94b1-d131-46a8-b521-5e5463c65d3c";
     fsType = "btrfs";
     options = [
       "users" 
@@ -18,7 +18,7 @@
  
   # Micron
    fileSystems."/home/steve/Drives/Micron" = {
-    device = "/dev/disk/by-uuid/bfb77242-0ed4-49cc-9b25-785b46df2598";
+    device = "/dev/disk/by-uuid/1754e144-0e69-4af7-9cbb-926bb61c1642";
     fsType = "btrfs";
     options = [ 
       "users"
@@ -31,7 +31,7 @@
 
   # Silver
   fileSystems."/home/steve/Drives/Silver" = {
-    device = "/dev/disk/by-uuid/515cbbe8-9f41-4a8f-8967-37b6410f1a99";
+    device = "/dev/disk/by-uuid/d40229cb-235d-4cdc-9331-9593d73cc787";
     fsType = "btrfs";
     options = [ 
       "users" 
@@ -44,7 +44,7 @@
 
   # WD
   fileSystems."/home/steve/Drives/WD" = {
-    device = "/dev/disk/by-uuid/8d61fc99-6382-4f72-ab72-25457efadc14";
+    device = "/dev/disk/by-uuid/c9428bbc-2121-424c-8cf9-4bbb53734675";
     fsType = "ext4";
     options = [ 
       "users"
@@ -55,7 +55,7 @@
 
   # Black 
   fileSystems."/home/steve/Drives/Black" = {
-    device = "/dev/disk/by-uuid/a982567b-7acb-4965-92c2-37e9690d8ebf";
+    device = "/dev/disk/by-uuid/c8d2a329-4417-4d88-b49c-127b17950f28";
     fsType = "btrfs";
     options = [ 
       "users"
@@ -66,7 +66,17 @@
     ];
    };
 
-
+  
+  # Seagate
+  fileSystems."/home/steve/Drives/Seagate" = {
+    device = "/dev/disk/by-uuid/bf2a43fc-c77a-4a02-840d-cb5ac9bcc979";
+    fsType = "ext4";
+    options = [ 
+      "users"
+      "nofail" 
+      "exec" 
+    ];
+   };
 
 
 
