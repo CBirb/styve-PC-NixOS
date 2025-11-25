@@ -13,12 +13,13 @@
     };
   };
 
-  programs.virt-manager.enable = true;
+  # programs.virt-manager.enable = true;
 
 
 
   # Waydroid
   virtualisation.waydroid.enable = true;
+  
 
   # Enable USB redirection (optional)
   virtualisation.spiceUSBRedirection.enable = true;

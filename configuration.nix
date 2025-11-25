@@ -202,11 +202,10 @@
     wget
     parted 
     gparted
-    distrobox
-    stable.insync
+    insync
     bash
     ffmpeg-full
-    stable.ffmpeg-normalize
+    ffmpeg-normalize
     zenity
     gnome-disk-utility
     clamav
@@ -215,13 +214,19 @@
     git
     unzip
     unrar
-    stable.megasync
-    stable.mission-center
+    megasync
+    mission-center
     bat
-    podman-compose
     ptyxis
     freetype
     
+    # Container
+    distrobox
+    podman-compose
+    kubernix
+    kubernetes
+    kubergrunt
+
     # Appimage
     # fetchurl
     appimage-run
@@ -246,17 +251,24 @@
     fastfetch
 
     ## BTRFS  Tools
-    stable.btrfs-progs
-    stable.btrfs-assistant
-    stable.btrfs-list
-    stable.btrfs-heatmap
+    btrfs-progs
+    btrfs-assistant
+    btrfs-list
+    btrfs-heatmap
 
     # Uni-Tools
-    stable.texstudio
-    stable.texliveFull
-    stable.texliveGUST
-    stable.texliveTeTeX
-        
+    texstudio
+    texliveFull
+    texliveGUST
+    texliveTeTeX
+    rPackages.matlab
+    matlab-language-server
+    texlivePackages.matlab-prettifier
+    texlivePackages.makeplot        
+    texlivePackages.numericplots
+    haskellPackages.HNumeric
+    sageWithDoc
+    scilab-bin
 
     ## Coding
      
@@ -274,7 +286,7 @@
     rocmPackages.clang
 
     # Coding Utils
-    stable.vscodium
+    vscodium
 
 
     ## Nvidia
@@ -321,168 +333,168 @@
     picom
 
     # extra Games
-    stable.bastet
-    stable.ninvaders
+    bastet
+    ninvaders
     # pacman-game
-    stable.nsnake
-    stable.greed
-    stable.bsdgames
-    stable.nethack
-    stable.moon-buggy
-    stable.crawl
-    stable.egoboo
-    stable.sil-q
-    stable.cataclysm-dda
-    stable.brogue-ce
-    stable.angband
-    stable.narsil
+    nsnake
+    greed
+    bsdgames
+    nethack
+    moon-buggy
+    crawl
+    egoboo
+    sil-q
+    cataclysm-dda
+    brogue-ce
+    angband
+    narsil
     # tome2
-    stable.ace-of-penguins
-    stable.yquake2-all-games
+    ace-of-penguins
+    yquake2-all-games
 
 
     ## Video
-    blackmagic
-    davinci-resolve
+    unstable.blackmagic
+    unstable.davinci-resolve
     
     ## Audio-Production
 
     # Audio-Wine
-    stable.yabridge
-    stable.yabridgectl
-    stable.wineWowPackages.yabridge
-    stable.winetricks
-    stable.wineasio
-    stable.wineWowPackages.fonts
+    yabridge
+    yabridgectl
+    wineWowPackages.yabridge
+    winetricks
+    wineasio
+    wineWowPackages.fonts
 
 
     # Daws
-    stable.reaper
-    stable.reaper-sws-extension
-    stable.reaper-reapack-extension
-    stable.ardour
-    stable.lmms
+    reaper
+    reaper-sws-extension
+    reaper-reapack-extension
+    ardour
+    lmms
 
 
     # Clap-Vst
-    stable.clap
-    stable.rPackages.clap
-    stable.chow-tape-model
-    stable.lsp-plugins
+    clap
+    rPackages.clap
+    chow-tape-model
+    lsp-plugins
     
     # LV2-Vst
-    stable.lv2
-    stable.lv2bm
-    stable.lv2lint
-    stable.lv2-cpp-tools
-    stable.mod-arpeggiator-lv2
-    stable.rkrlv2
-    stable.bolliedelayxt-lv2
-    stable.airwindows-lv2
-    stable.magnetophonDSP.CharacterCompressor
-    stable.python313Packages.sphinx-lv2-theme
-    stable.python312Packages.sphinx-lv2-theme
-    stable.aether-lv2
-    stable.swh_lv2
-    stable.neural-amp-modeler-lv2
-    stable.mda_lv2
-    stable.x42-plugins
-    stable.tunefish
-    stable.ttl2c
-    stable.sfizz
-    stable.plugin-torture
-    stable.open-music-kontrollers.vm
-    stable.open-music-kontrollers.synthpod
-    stable.open-music-kontrollers.moony
-    stable.open-music-kontrollers.midi_matrix
-    stable.noise-repellent
-    stable.mod-distortion
-    stable.magnetophonDSP.pluginUtils
-    stable.infamousPlugins
-    stable.drumgizmo
-    stable.distrho-ports
-    stable.bshapr
-    stable.bchoppr
-    stable.gxplugins-lv2
-    stable.talentedhack
-    stable.sratom
-    stable.plujain-ramp
-    stable.open-music-kontrollers.orbit
-    stable.open-music-kontrollers.mephisto
-    stable.mooSpace
-    stable.magnetophonDSP.RhythmDelay
-    stable.magnetophonDSP.MBdistortion
-    stable.lilv
-    stable.fverb
-    stable.jalv
-    stable.jalv-qt
-    oldoldstable.fmsynth
-    stable.boops
-    stable.artyFX
-    stable.metersLv2
-    stable.bs2b-lv2
+    lv2
+    lv2bm
+    lv2lint
+    lv2-cpp-tools
+    mod-arpeggiator-lv2
+    rkrlv2
+    bolliedelayxt-lv2
+    airwindows-lv2
+    magnetophonDSP.CharacterCompressor
+    python313Packages.sphinx-lv2-theme
+    python312Packages.sphinx-lv2-theme
+    aether-lv2
+    swh_lv2
+    neural-amp-modeler-lv2
+    mda_lv2
+    x42-plugins
+    tunefish
+    ttl2c
+    sfizz
+    plugin-torture
+    open-music-kontrollers.vm
+    open-music-kontrollers.synthpod
+    open-music-kontrollers.moony
+    open-music-kontrollers.midi_matrix
+    noise-repellent
+    mod-distortion
+    magnetophonDSP.pluginUtils
+    infamousPlugins
+    drumgizmo
+    distrho-ports
+    bshapr
+    bchoppr
+    gxplugins-lv2
+    talentedhack
+    sratom
+    plujain-ramp
+    open-music-kontrollers.orbit
+    open-music-kontrollers.mephisto
+    mooSpace
+    magnetophonDSP.RhythmDelay
+    magnetophonDSP.MBdistortion
+    lilv
+    fverb
+    jalv
+    jalv-qt
+    # fmsynth
+    boops
+    artyFX
+    metersLv2
+    bs2b-lv2
     oldoldstable.ams-lv2
-    stable.speech-denoiser
-    stable.open-music-kontrollers.sherlock
-    stable.open-music-kontrollers.router
-    stable.ninjas2
-    stable.magnetophonDSP.LazyLimiter
-    stable.lvtk
-    stable.kapitonov-plugins-pack
-    stable.eq10q
-    stable.bsequencer
-    stable.zam-plugins
-    stable.x42-gmsynth
-    stable.suil
-    stable.sorcer
-    stable.open-music-kontrollers.jit
-    stable.open-music-kontrollers.eteroj
-    stable.bschaffl
-    stable.x42-avldrums
-    stable.surge-XT
-    stable.surge
-    stable.molot-lite
-    stable.ingen
-    stable.fomp
-    stable.faustPhysicalModeling
-    stable.bslizr
-    stable.bjumblr
-    stable.midi-trigger
-    stable.magnetophonDSP.CompBus
+    speech-denoiser
+    open-music-kontrollers.sherlock
+    open-music-kontrollers.router
+    ninjas2
+    magnetophonDSP.LazyLimiter
+    lvtk
+    kapitonov-plugins-pack
+    eq10q
+    bsequencer
+    zam-plugins
+    x42-gmsynth
+    suil
+    sorcer
+    open-music-kontrollers.jit
+    open-music-kontrollers.eteroj
+    bschaffl
+    x42-avldrums
+    surge-XT
+    surge
+    molot-lite
+    ingen
+    fomp
+    faustPhysicalModeling
+    bslizr
+    bjumblr
+    midi-trigger
+    magnetophonDSP.CompBus
     # magnetophonDSP.ConstantDetuneChorus
-    stable.vocproc
-    stable.juce
-    stable.triforce-lv2
-    stable.librearp-lv2
+    vocproc
+    juce
+    triforce-lv2
+    librearp-lv2
     oldstable.gxmatcheq-lv2
-    stable.faust2lv2
-    stable.bankstown-lv2
+    faust2lv2
+    bankstown-lv2
     
 
     # Vst
-    stable.vst2-sdk
-    stable.airwindows
-    stable.oxefmsynth
-    stable.bespokesynth-with-vst2
-    stable.ninjas2
-    stable.bespokesynth
+    vst2-sdk
+    airwindows
+    oxefmsynth
+    bespokesynth-with-vst2
+    ninjas2
+    bespokesynth
     
     # Other Vst 
-    stable.paulstretch
-    stable.vital
-    stable.drumgizmo
-    stable.guitarix
-    stable.odin2
-    stable.synth
-    stable.synthv1
+    paulstretch
+    vital
+    drumgizmo
+    guitarix
+    odin2
+    synth
+    synthv1
     # oldoldstable.haskellPackages.YampaSynth
-    stable.xsynth_dssi
-    stable.opnplug
-    stable.adlplug
-    stable.sonivox
+    xsynth_dssi
+    opnplug
+    adlplug
+    sonivox
     # stable.qes
     oldoldstable.fmsynth
-    stable.magnetophonDSP.VoiceOfFaust
+    magnetophonDSP.VoiceOfFaust
     # haskellPackages.ecta-plugin
     oldstable.decent-sampler
 
