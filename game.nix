@@ -3,52 +3,21 @@
 {
   
   
-  # Nvidia
+  # AMD-GPU
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
+  hardware.amdgpu.opencl.enable = true;
 
-  
-   services.xserver.videoDrivers = [ "nvidia" ];
-  
-
-   hardware.nvidia = {
-
-    # Modesetting is required.
-    modesetting.enable = true;
-
-    powerManagement.enable = true;
-
-   
-    powerManagement.finegrained = false;
-
-    
-    open = true;
-
-    nvidiaSettings = true;
-
-   
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
-
-
-  programs.obs-studio = {
+  systemd.services.lact = {
+    description = "AMDGPU Control Daemon";
+    after = ["multi-user.target"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
     enable = true;
-      package = (
-        pkgs.obs-studio.override {
-          cudaSupport = true;
-        }
-      );
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-backgroundremoval
-      obs-pipewire-audio-capture
-      obs-vaapi
-      obs-gstreamer
-      obs-vkcapture
-    ];
   };
 
    # Steam

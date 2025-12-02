@@ -19,7 +19,7 @@
     kitty.enable = true;
   };
   
-  programs.git = {
+  programs.git.settings = {
     enable = true;
     userName  = "CBirb";
     userEmail = "stephan.heinz@gmx.at";

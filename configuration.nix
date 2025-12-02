@@ -26,6 +26,20 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  boot.kernelModules = [
+    "ip_tables"
+    "iptable_filter"
+    "iptable_nat"
+    "iptable_mangle"
+    "nf_nat"
+    "nf_conntrack"
+    "binder_linux"
+    "ashmem_linux"
+    "tun"
+    "veth"
+    "br_netfilter"
+  ];
+
   # Kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages;
@@ -270,6 +284,10 @@
     sageWithDoc
     scilab-bin
 
+    # GIT
+    github-runner
+    github-desktop
+
     ## Coding
      
     # Coding Tools
@@ -289,18 +307,26 @@
     vscodium
 
 
-    ## Nvidia
-    nvidia-vaapi-driver
-    mesa
+    ## AMD
+    mesa.opencl
+    opencl-headers
     libva
     libva-utils
     vulkan-tools
     vulkan-loader
     vulkan-headers
     vulkan-utility-libraries
-    nvtopPackages.nvidia
-    nvidia-container-toolkit
- 
+    # amdvlk
+    # driversi686Linux.amdvlk
+    amdgpu_top
+    amdenc
+    amdctl
+    amd-ucodegen
+    amd-libflame
+    nvtopPackages.amd
+    rocmPackages.amdsmi
+    lact 
+     
 
     ## Desktop Tools  
     kdePackages.dolphin
@@ -464,7 +490,7 @@
     # magnetophonDSP.ConstantDetuneChorus
     vocproc
     juce
-    triforce-lv2
+    stable.triforce-lv2
     librearp-lv2
     oldstable.gxmatcheq-lv2
     faust2lv2
@@ -485,7 +511,7 @@
     drumgizmo
     guitarix
     odin2
-    synth
+    stable.synth
     synthv1
     # oldoldstable.haskellPackages.YampaSynth
     xsynth_dssi
