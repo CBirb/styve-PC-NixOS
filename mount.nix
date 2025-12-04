@@ -13,6 +13,7 @@
       "exec" 
       "compress=zstd:15"
       "ssd"
+      "noatime"
     ];
    };
  
@@ -26,6 +27,7 @@
       "exec"
       "compress=zstd:15"
       "ssd"
+      "noatime"
     ];
    };
 
@@ -39,6 +41,7 @@
       "exec" 
       "compress=zstd:15"
       "ssd"
+      "noatime"
     ];
    };
 
@@ -49,7 +52,8 @@
     options = [ 
       "users"
       "nofail" 
-      "exec" 
+      "exec"
+      "noatime" 
     ];
    };
 
@@ -63,6 +67,7 @@
       "exec" 
       "compress=zstd:15" 
       "ssd"
+      "noatime"
     ];
    };
 

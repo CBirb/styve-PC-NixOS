@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable,nixpkgs-stable, nixpkgs-oldstable, nixpkgs-oldoldstable, musnix, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nixpkgs-oldstable, nixpkgs-oldoldstable, musnix, home-manager, ... } @ inputs:
   let
     system = "x86_64-linux";
   in {
@@ -67,6 +67,7 @@
 
         ./configuration.nix
         home-manager.nixosModules.home-manager
+        home-manager.nixosModules.default
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

@@ -193,6 +193,10 @@
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Fstrim
+  services.fstrim.enable = true;
+  services.fstrim.interval = "weekly";
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -271,25 +275,21 @@
     btrfs-heatmap
 
     # Uni-Tools
-    texstudio
-    texliveFull
-    texliveGUST
     texliveTeTeX
-    rPackages.matlab
-    matlab-language-server
-    texlivePackages.matlab-prettifier
-    texlivePackages.makeplot        
-    texlivePackages.numericplots
-    haskellPackages.HNumeric
-    sageWithDoc
-    scilab-bin
+    texliveFull
+    miktex
+    texliveGUST
+    texliveBookPub
+    texstudio
 
+    
     # GIT
     github-runner
     github-desktop
 
     ## Coding
-     
+    vscodium     
+
     # Coding Tools
     valgrind
     python314
@@ -302,10 +302,6 @@
     rustup
     go
     rocmPackages.clang
-
-    # Coding Utils
-    vscodium
-
 
     ## AMD
     mesa.opencl

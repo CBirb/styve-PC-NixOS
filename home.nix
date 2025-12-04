@@ -25,6 +25,11 @@
     userEmail = "stephan.heinz@gmx.at";
   };
 
+  home.sessionPath = [
+    "${builtins.getEnv "HOME"}/bin"
+    "${builtins.getEnv "HOME"}/.miktex/texmfs/install/miktex/bin"
+  ];
+
   services.picom = {
     enable = true;
   };
