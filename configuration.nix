@@ -182,6 +182,11 @@
   # This refers to the uncompressed size, actual memory usage will be lower.
     memoryPercent = 30;
   };
+ 
+  # Swappines
+  boot.kernel.sysctl = {
+    "vm.swappiness" = lib.mkForce 8;
+  };
 
   # Udisk
   services.udisks2.enable = true;
@@ -229,7 +234,7 @@
     clamav
     clamtk
     qemu
-    git
+    gitFull
     unzip
     unrar
     megasync
@@ -284,8 +289,10 @@
 
     
     # GIT
-    github-runner
-    github-desktop
+    stable.github-runner
+    stable.github-desktop
+    stable.github-backup
+    stable.github-release
 
     ## Coding
     vscodium     
@@ -322,6 +329,7 @@
     nvtopPackages.amd
     rocmPackages.amdsmi
     lact 
+    zluda
      
 
     ## Desktop Tools  
@@ -514,11 +522,11 @@
     opnplug
     adlplug
     sonivox
-    # stable.qes
+    # qes
     oldoldstable.fmsynth
     magnetophonDSP.VoiceOfFaust
     # haskellPackages.ecta-plugin
-    oldstable.decent-sampler
+    decent-sampler
 
   ];
 
