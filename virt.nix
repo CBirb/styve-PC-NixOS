@@ -1,26 +1,24 @@
 { config, pkgs, lib, ... }:
 
 {
-  
    # Virt Manager
   virtualisation.libvirtd = {
     enable = true;
     # qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
     qemu = {
       vhostUserPackages = with pkgs; [ virtiofsd ];
+      package = pkgs.qemu_kvm;
       swtpm.enable = true;
       # ovmf.packages = [ pkgs.OVMFFull.fd ];
     };
   };
+  # virtualisation.spiceUSBRedirection.enable = true;
 
   programs.virt-manager.enable = true;
-
-
 
   # Waydroid
   virtualisation.waydroid.enable = true;
   
-
   # Enable USB redirection (optional)
   virtualisation.spiceUSBRedirection.enable = true;
 
@@ -45,8 +43,24 @@
     };
   };
 
+  virtualisation.oci-containers = {
+    # backend defaults to "podman"
+    backend = "podman";
+    containers = {
+      # foo = {
+      #   # ...
+      # };
+    };
+  };
 
+  # Optionally, create a Docker compatibility alias
+  programs.zsh.shellAliases = {
+    docker = "podman";
+  };
 
-
-
+  # FreeRDP
+  
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
 }

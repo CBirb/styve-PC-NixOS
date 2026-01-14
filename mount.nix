@@ -47,7 +47,7 @@
 
   # WD
   # fileSystems."/home/steve/Drives/WD" = {
-  #   device = "/dev/disk/by-uuid/bd72a17f-64d9-4c42-b517-29602d4f95bf";
+  #   device = "/dev/disk/by-uuid/cabba7b9-5334-41b7-aad0-c4c6effba1fd";
   #   fsType = "ext4";
   #   options = [ 
   #     "users"
@@ -59,7 +59,7 @@
 
   # Black 
   fileSystems."/home/steve/Drives/Black" = {
-    device = "/dev/disk/by-uuid/1adbf3b4-173c-40d2-b9e8-57550fd9331f";
+    device = "/dev/disk/by-uuid/7530d0b2-918c-42f0-be22-599ed87a46b8";
     fsType = "btrfs";
     options = [ 
       "users"
@@ -80,6 +80,20 @@
       "users"
       "nofail" 
       "exec" 
+      "noatime"
+    ];
+   };
+
+  # Extreme 
+  fileSystems."/home/steve/Drives/Extreme" = {
+    device = "/dev/disk/by-uuid/4a792895-dbfd-4f40-984f-07693652500d";
+    fsType = "btrfs";
+    options = [ 
+      "users"
+      "nofail" 
+      "exec" 
+      "compress=zstd:15" 
+      "ssd"
       "noatime"
     ];
    };

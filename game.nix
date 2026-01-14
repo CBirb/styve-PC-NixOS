@@ -1,14 +1,34 @@
 { config, pkgs, lib, ... }:
 
 {
-  
+
+  # AMD Stuff
+  boot.initrd.kernelModules = [ "amdgpu" ];  
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  # ];
+
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
+
+  # services.lact.enable = true;
+
   
   # AMD-GPU
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      rocmPackages.clr
+      libva
+      mesa.opencl
+    ];  
   };
   hardware.amdgpu.opencl.enable = true;
+
 
   systemd.services.lact = {
     description = "AMDGPU Control Daemon";
@@ -20,6 +40,7 @@
     enable = true;
   };
 
+  
    # Steam
    programs = {
      gamescope = {

@@ -26,19 +26,35 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  boot.kernelModules = [
-    "ip_tables"
-    "iptable_filter"
-    "iptable_nat"
-    "iptable_mangle"
-    "nf_nat"
-    "nf_conntrack"
-    "binder_linux"
-    "ashmem_linux"
-    "tun"
-    "veth"
-    "br_netfilter"
-  ];
+  
+  # boot.kernelModules = [
+  #   "ip_tables"
+  #   "iptable_filter"
+  #   "iptable_nat"
+  #   "iptable_mangle"
+  #   "nf_nat"
+  #   "nf_conntrack"
+  #   "binder_linux"
+  #   "ashmem_linux"
+  #   "tun"
+  #   "veth"
+  #   "br_netfilter"
+  # ];
+
+  # boot.initrd.kernelModules = [ 
+  #   "vfio_pci"
+  #   "vfio_iommu_type1"
+  #   # "i915" # replace or remove with your device's driver as needed
+  #   "amdgpu"
+  # ];
+
+  # boot.kernelParams = [
+  #   "amd_iommu=on"
+  #   "iommu=pt"
+  #   "vfio-pci.ids=1002:7550,1002:ab40"
+  # ];
+
+   
 
   # Kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -71,12 +87,17 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
+   services.xserver = {
+     enable = true;
+     desktopManager = {
+       xterm.enable = false;
+       xfce.enable = true;
+     };
+   };
 
-  # Enable the Cinnamon Desktop Environment.
-  # services.xserver.displayManager.lightdm.enable = true;
-  # services.xserver.desktopManager.cinnamon.enable = true;
-
+  # Cinnamon
+  programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-qt;
+  
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -90,12 +111,11 @@
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
       kdePackages.xdg-desktop-portal-kde
-      lxqt.xdg-desktop-portal-lxqt
+    #   lxqt.xdg-desktop-portal-lxqt
     ];
   };
   
-
-
+  
   fonts.packages = with pkgs;
     (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
       # Add any extra fonts here, e.g. dejavu_fonts, noto-fonts, etc.
@@ -152,9 +172,9 @@
   services.pipewire.extraConfig.pipewire."92-low-latency" = {
     "context.properties" = {
       "default.clock.rate" = 48000;        # Samplerate
-      "default.clock.quantum" = 128;       # Buffersize
-      "default.clock.min-quantum" = 64;
-      "default.clock.max-quantum" = 256;
+      "default.clock.quantum" = 1024;       # Buffersize
+      "default.clock.min-quantum" = 512;
+      "default.clock.max-quantum" = 2048;
     };
   };
 
@@ -170,7 +190,7 @@
   users.users.steve = {
     isNormalUser = true;
     description = "steve";
-    extraGroups = [ "networkmanager" "wheel" "podman" "kvm" "libvirtd" "audio" "video" "input" "disk" "libvirt" "render" "realtime" "openrazer" "gamemode" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" "kvm" "libvirtd" "audio" "video" "input" "disk" "libvirt" "render" "realtime" "openrazer" "gamemode" "docker" ];
     packages = with pkgs; [
     ];
   };
@@ -180,12 +200,12 @@
     enable = true;
     algorithm = "zstd";
   # This refers to the uncompressed size, actual memory usage will be lower.
-    memoryPercent = 30;
+    memoryPercent = 28;
   };
  
   # Swappines
   boot.kernel.sysctl = {
-    "vm.swappiness" = lib.mkForce 8;
+    "vm.swappiness" = lib.mkForce 5;
   };
 
   # Udisk
@@ -225,8 +245,11 @@
     wget
     parted 
     gparted
-    insync
+    stable.insync
     bash
+    kdePackages.ffmpegthumbs
+    ocamlPackages.ffmpeg
+    ffmpeg
     ffmpeg-full
     ffmpeg-normalize
     zenity
@@ -237,18 +260,37 @@
     gitFull
     unzip
     unrar
-    megasync
+    stable.megasync
     mission-center
     bat
     ptyxis
     freetype
+    clinfo 
+    unixtools.fdisk
+    util-linux
+    unixtools.util-linux
+    libuuid
+    unixtools.fsck
+    toybox
+    pciutils
+    dmidecode    
+    samba
+    kdePackages.kdenetwork-filesharing
+
+    # Other Tools
+    stable.woeusb
     
     # Container
     distrobox
     podman-compose
+    docker-compose
     kubernix
     kubernetes
     kubergrunt
+    gearlever
+
+    # Virt-Manager
+    dnsmasq 
 
     # Appimage
     # fetchurl
@@ -294,9 +336,6 @@
     stable.github-backup
     stable.github-release
 
-    ## Coding
-    vscodium     
-
     # Coding Tools
     valgrind
     python314
@@ -312,6 +351,11 @@
 
     ## AMD
     mesa.opencl
+    mesa
+    mesa-demos
+    driversi686Linux.mesa
+    mesa-gl-headers
+    driversi686Linux.mesa-demos
     opencl-headers
     libva
     libva-utils
@@ -330,6 +374,8 @@
     rocmPackages.amdsmi
     lact 
     zluda
+    rocmPackages.rocminfo
+    # rocmPackages.clr    
      
 
     ## Desktop Tools  
@@ -341,8 +387,7 @@
     kdePackages.partitionmanager
     kdePackages.kpmcore
     gvfs
-    gnome-terminal
-
+    gnome-terminal     
     
   
     # Hyprland Tools
@@ -384,152 +429,27 @@
 
 
     ## Video
-    unstable.blackmagic
-    unstable.davinci-resolve
-    
+    # unstable.blackmagic
+    # unstable.davinci-resolve
+     
+    # AMD Tools    
+
+    # Non-Audio Wine
+    wineWowPackages.waylandFull
+    winetricks
+
     ## Audio-Production
 
+    # inputs.native-access-nix.packages.x86_64-linux.native-access
+
     # Audio-Wine
-    yabridge
-    yabridgectl
-    wineWowPackages.yabridge
-    winetricks
     wineasio
     wineWowPackages.fonts
-
-
-    # Daws
-    reaper
-    reaper-sws-extension
-    reaper-reapack-extension
-    ardour
-    lmms
-
-
-    # Clap-Vst
-    clap
-    rPackages.clap
-    chow-tape-model
-    lsp-plugins
-    
-    # LV2-Vst
-    lv2
-    lv2bm
-    lv2lint
-    lv2-cpp-tools
-    mod-arpeggiator-lv2
-    rkrlv2
-    bolliedelayxt-lv2
-    airwindows-lv2
-    magnetophonDSP.CharacterCompressor
-    python313Packages.sphinx-lv2-theme
-    python312Packages.sphinx-lv2-theme
-    aether-lv2
-    swh_lv2
-    neural-amp-modeler-lv2
-    mda_lv2
-    x42-plugins
-    tunefish
-    ttl2c
-    sfizz
-    plugin-torture
-    open-music-kontrollers.vm
-    open-music-kontrollers.synthpod
-    open-music-kontrollers.moony
-    open-music-kontrollers.midi_matrix
-    noise-repellent
-    mod-distortion
-    magnetophonDSP.pluginUtils
-    infamousPlugins
-    drumgizmo
-    distrho-ports
-    bshapr
-    bchoppr
-    gxplugins-lv2
-    talentedhack
-    sratom
-    plujain-ramp
-    open-music-kontrollers.orbit
-    open-music-kontrollers.mephisto
-    mooSpace
-    magnetophonDSP.RhythmDelay
-    magnetophonDSP.MBdistortion
-    lilv
-    fverb
-    jalv
-    jalv-qt
-    # fmsynth
-    boops
-    artyFX
-    metersLv2
-    bs2b-lv2
-    oldoldstable.ams-lv2
-    speech-denoiser
-    open-music-kontrollers.sherlock
-    open-music-kontrollers.router
-    ninjas2
-    magnetophonDSP.LazyLimiter
-    lvtk
-    kapitonov-plugins-pack
-    eq10q
-    bsequencer
-    zam-plugins
-    x42-gmsynth
-    suil
-    sorcer
-    open-music-kontrollers.jit
-    open-music-kontrollers.eteroj
-    bschaffl
-    x42-avldrums
-    surge-XT
-    surge
-    molot-lite
-    ingen
-    fomp
-    faustPhysicalModeling
-    bslizr
-    bjumblr
-    midi-trigger
-    magnetophonDSP.CompBus
-    # magnetophonDSP.ConstantDetuneChorus
-    vocproc
-    juce
-    stable.triforce-lv2
-    librearp-lv2
-    oldstable.gxmatcheq-lv2
-    faust2lv2
-    bankstown-lv2
-    
-
-    # Vst
-    vst2-sdk
-    airwindows
-    oxefmsynth
-    bespokesynth-with-vst2
-    ninjas2
-    bespokesynth
-    
-    # Other Vst 
-    paulstretch
-    vital
-    drumgizmo
-    guitarix
-    odin2
-    stable.synth
-    synthv1
-    # oldoldstable.haskellPackages.YampaSynth
-    xsynth_dssi
-    opnplug
-    adlplug
-    sonivox
-    # qes
-    oldoldstable.fmsynth
-    magnetophonDSP.VoiceOfFaust
-    # haskellPackages.ecta-plugin
-    decent-sampler
-
   ];
 
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+  };
   
   # Garbage Collection
   nix.gc = {

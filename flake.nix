@@ -18,9 +18,19 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    native-access-nix = {
+      url = "github:yusefnapora/native-access-nix";
+
+      # The following line is optional, but will use less disk space,
+      # since it uses your existing nixpkgs input. If you use this and
+      # native-access doesn't work, try removing it - there's a chance
+      # that your current version of nixpkgs has an incompatible version
+      # of wine.
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nixpkgs-oldstable, nixpkgs-oldoldstable, musnix, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nixpkgs-oldstable, nixpkgs-oldoldstable, musnix, home-manager, native-access-nix, ... } @ inputs:
   let
     system = "x86_64-linux";
   in {
