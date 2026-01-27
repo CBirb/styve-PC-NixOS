@@ -52,6 +52,21 @@
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      package = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        libkrb5
+        keyutils
+        # Viele UE4/UE5 Spiele brauchen diese:
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        # xorg.libXscrnsaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+      ];
+    };
     };
   };
   # hardware.xone.enable = true; # support for the xbox controller USB dongle

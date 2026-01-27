@@ -200,9 +200,16 @@
     enable = true;
     algorithm = "zstd";
   # This refers to the uncompressed size, actual memory usage will be lower.
-    memoryPercent = 28;
+    memoryPercent = 37;
   };
  
+  # boot.kernelParams = [
+  #   "zswap.enabled=1" # enables zswap
+  #   "zswap.compressor=zstd" # compression algorithm
+  #   "zswap.max_pool_percent=29" # maximum percentage of RAM that zswap is allowed to use
+  #   "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
+  # ];
+
   # Swappines
   boot.kernel.sysctl = {
     "vm.swappiness" = lib.mkForce 5;
@@ -276,10 +283,16 @@
     dmidecode    
     samba
     kdePackages.kdenetwork-filesharing
+    
 
     # Other Tools
     stable.woeusb
-    
+    smartmontools
+    nagiosPlugins.check_smartmon
+    gsmartcontrol
+    xfsprogs
+    libxfs    
+
     # Container
     distrobox
     podman-compose
@@ -403,8 +416,6 @@
     mangohud
     gamescope
     gamemode
-    nexusmods-app-unfree
-    nexusmods-app
     picom
 
     # extra Games
@@ -429,8 +440,8 @@
 
 
     ## Video
-    # unstable.blackmagic
-    # unstable.davinci-resolve
+    unstable.blackmagic
+    unstable.davinci-resolve
      
     # AMD Tools    
 
@@ -447,9 +458,9 @@
     wineWowPackages.fonts
   ];
 
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
-  };
+  # environment.variables = {
+  #   RUSTICL_ENABLE = "radeonsi";
+  # };
   
   # Garbage Collection
   nix.gc = {
